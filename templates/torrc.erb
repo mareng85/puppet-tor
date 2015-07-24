@@ -1,0 +1,24 @@
+# FILE MANAGED BY PUPPET! DO NOT EDIT!
+
+SocksPort <%= @socks_port %> # Default: Bind to localhost:9050 for local connections.
+
+Log notice syslog
+
+# Log debug stderr
+
+<% if @deamon == true %>
+  RunAsDaemon 1
+<% end %>
+
+DataDirectory <%= @data_dir %>
+
+<% if @use_control_port == true %>
+  ControlPort <%= @control_port %>
+  CookieAuthentication 1
+<% end %>
+
+<% if @use_dns_port == true %>       
+  DNSPort <%= @dns_port %>
+  AutomapHostsOnResolve 1
+  AutomapHostsSuffixes .exit,.onion
+<% end %>
