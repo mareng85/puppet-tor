@@ -53,11 +53,11 @@ For using as client with Tor DNS and with Control Port:
     }
 
 
-Example: For using as relay:
+For using as relay:
 
     class{'::tor::relay':}
 
-Example: For using as exit node:
+For using as exit node:
     
     class{'::tor::exit_node':}
 
