@@ -2,6 +2,7 @@
 class tor::client(
   $ensure               = $::tor::params::ensure,
   $socks_port           = $::tor::params::socks_port,
+  $socks_policy         = $::tor::params::socks_policy,
   $daemon               = $::tor::params::daemon,
   $data_dir             = $::tor::params::data_dir,
   $dns_port             = $::tor::params::dns_port,
