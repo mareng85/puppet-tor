@@ -40,15 +40,15 @@ Same as above, but setting some custom values:
 
     class{'::tor::client':
       socks_port           => ['127.0.0.1:9000',],
-      socks_policy         => undef,
+      socks_policy         => [ 'accept *:80', ],
       deamon               => true,
     }
 
 For using as client with Tor DNS and with Control Port:
 
     class{'::tor::client':
-       $ensure     	=> running,
-       $dns_port 	=> '5353',
+       $ensure          => running,
+       $dns_port        => '5353',
        $control_port    => '9051',
     }
 
@@ -59,7 +59,7 @@ For using as relay:
 
 For using as exit node:
     
-    class{'::tor::exit_node':}
+    class{'::tor::exitnode':}
 
 ## Limitations
 
