@@ -53,7 +53,7 @@ class tor::client(
   $socks_port           = $::tor::params::socks_port,
   $daemon               = $::tor::params::daemon,
   $data_dir             = $::tor::params::data_dir,
-  $use_dns_port         = $::tor::params::use_dns_port,
+  $use_dns              = $::tor::params::use_dns,
   $dns_port             = $::tor::params::dns_port,
   $use_control_port     = $::tor::params::use_control_port,
   $control_port         = $::tor::params::control_port,
