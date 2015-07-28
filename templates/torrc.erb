@@ -1,33 +1,42 @@
 # FILE MANAGED BY PUPPET! DO NOT EDIT!
 
-SocksPort <%= @socks_port %> # Default: Bind to localhost:9050 for local connections.
+<% @socks_port.each do |socksportarray| -%>
+SocksPort <%= socksportarray %>
+<% end -%>
+
+<% @socks_policy.each do |sockspolicyarray| -%>
+SocksPolicy <%= sockspolicyarray %>
+<% end -%>
 
 Log notice syslog
 
 # Log debug stderr
 
-<% if @deamon == true %>
-  RunAsDaemon 1
+<% if @deamon  %>
+RunAsDaemon 1
 <% end %>
 
 DataDirectory <%= @data_dir %>
 
-<% if @use_control_port == true %>
-  ControlPort <%= @control_port %>
-  CookieAuthentication 1
+<% if @control_port  %>
+ControlPort <%= @control_port %>
+CookieAuthentication 1
 <% end %>
 
-<% if @use_dns == true %>       
-  DNSPort <%= @dns_port %>
-  AutomapHostsOnResolve 1
-  AutomapHostsSuffixes .exit,.onion
+<% if @dns_port %>       
+DNSPort <%= @dns_port %>
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .exit,.onion
 <% end %>
 
-<% if @tor_relay == true %>
-  ORPort <%= @or_port %>
-  Nickname <%= @nickname %>
-  RelayBandwidthRate 1024 KB
-  RelayBandwidthBurst 1024 KB
-  ContactInfo your name <your@email>
-  ExitPolicy <%= @exit_policy %> *:*
+<% if @tor_relay or @tor_exit_node %>
+ORPort <%= @or_port %>
+Nickname <%= @nickname %>
+RelayBandwidthRate <%= @bandwidthrate %>
+RelayBandwidthBurst <%= @bandwidthburst %>
+ContactInfo <%= @contactinfo %>
+<% @exit_policy.each do |exitpolicyarray| -%>
+ExitPolicy <%= exitpolicyarray %>
+<% end -%>
 <% end %>
+
