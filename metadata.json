@@ -1,14 +1,20 @@
 {
   "name": "maxhope-tor",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "maxhope",
   "summary": "Set up tor client",
   "license": "Apache-2.0",
   "source": "https://github.com/maxhope/maxhope-tor",
   "project_page": "https://github.com/maxhope/maxhope-tor",
   "issues_url": "https://github.com/maxhope/maxhope-tor/issues",
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"CentOS",
+    "operatingsystemrelease":[ "6.0", "7.0" ]
+    },
+   ],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 3.0.0"}
   ]
 }
 
