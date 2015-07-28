@@ -22,3 +22,12 @@ DataDirectory <%= @data_dir %>
   AutomapHostsOnResolve 1
   AutomapHostsSuffixes .exit,.onion
 <% end %>
+
+<% if @tor_relay == true %>
+  ORPort <%= @or_port %>
+  Nickname <%= @nickname %>
+  RelayBandwidthRate 1024 KB
+  RelayBandwidthBurst 1024 KB
+  ContactInfo your name <your@email>
+  ExitPolicy <%= @exit_policy %> *:*
+<% end %>
