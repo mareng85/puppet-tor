@@ -13,11 +13,11 @@
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
-This module sets up Tor anonymous proxy as a client or relay. Exit node is to be done.
+This module sets up Tor anonymous proxy as a client, relay or exit node.
 
 ## Module Description
-This module sets up Tor anonymous proxy as a client or relay. Exit node is to be done.
-Then you can
+This module sets up Tor anonymous proxy as a client, relay or exit node. 
+Then you can do the web almost anonymously. 
 
 ## Setup
 
@@ -33,19 +33,28 @@ Set your browser proxy settings to listen on 127.0.0.1:9050 using SOCKS5.
 ## Usage
 
 Example: For using as client:
-class{'::tor::client':}
+	class{'::tor::client':}
+
+Example: Same as above, but setting some custom values:
+        class{'::tor::client':
+	  socks_port           => ['127.0.0.1:9000',],
+ 	  socks_policy         => undef,
+  	  deamon               => true,
+	}
+
 
 Example: For using as client with Tor DNS:
-class{'::tor::client':
-  $ensure     	=> running,
-  $socks_port   => '9050',
-  $use_dns  	=> true,
-  $dns_port 	=> '5353',
-}
+	class{'::tor::client':
+  	  $ensure     	=> running,
+  	  $dns_port 	=> '5353',
+	}
 
 
 Example: For using as relay:
-class{'::tor::relay':}
+	class{'::tor::relay':}
+
+Example: For using as exit node:
+        class{'::tor::exit_node':}
 
 ## Limitations
 
