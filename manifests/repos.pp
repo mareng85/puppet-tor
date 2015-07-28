@@ -20,5 +20,6 @@ class tor::repos {
         gpgcheck => 0
       }
     }
+    default: { notify {'Repos does not exists for your OS!':}}
   }
 }

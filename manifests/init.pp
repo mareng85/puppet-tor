@@ -53,14 +53,11 @@ class tor::client(
   $socks_port           = $::tor::params::socks_port,
   $daemon               = $::tor::params::daemon,
   $data_dir             = $::tor::params::data_dir,
-  $use_dns              = $::tor::params::use_dns,
   $dns_port             = $::tor::params::dns_port,
-  $use_control_port     = $::tor::params::use_control_port,
   $control_port         = $::tor::params::control_port,
 ) inherits tor::params {
-  validate_bool($use_dns_port)
-  validate_bool($use_control_port)
-
+  validate_array($socks_port)
+ 
   notify{'Setting up Tor client...':}
   class{'::tor':
     ensure	=> $ensure,
@@ -80,17 +77,16 @@ class tor::relay(
   $ensure               = $::tor::params::ensure,
   $or_port		= $::tor::params::or_port,
   $nickname		= $::tor::params::nickname,
-  $exit_policy		= $::tor::params::exit_policy,
+  $contactinfo          = $::tor::params::contactinfo,
+  $bandwithrate		= $::tor::params::bandwithrate,
+  $bandwithburst	= $::tor::params::bandwithburst,
+  $exit_policy		= ['*:*',],
 ) inherits tor::params {
-    notify{'Setting up Tor relay...':}
     class{'::tor':
       ensure      => $ensure,
     }
+    validate_array($exit_policy)
     $tor_relay = true
-
-    unless $exit_policy =~ Enum['accept', 'reject'] {
-      fail("exit_policy must be either accept or reject! Value passed was: $exit_policy")
-    }
 
     file {$::tor::params::conf:
       ensure  => present,
@@ -106,8 +102,26 @@ class tor::relay(
 class tor::exit_node(
   $ensure               = $::tor::params::ensure,
   $or_port              = $::tor::params::or_port,
+  $nickname             = $::tor::params::nickname,
+  $contactinfo		= $::tor::params::contactinfo,
+  $bandwithrate         = $::tor::params::bandwithrate,
+  $bandwithburst        = $::tor::params::bandwithburst,
+  $exit_policy		= $::tor::params::exit_policy,
 ) inherits tor::params {
   class{'::tor':
-    ensure      => $ensure,
+    ensure      => $ensure,  
   }
+  
+  validate_array($exit_policy)
+  $tor_exit_node = true
+
+  file {$::tor::params::conf:
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('tor/torrc.erb'),
+      require => Package['tor'],
+      notify  => Service['tor'],
+    } 
 }
