@@ -17,7 +17,7 @@ DataDirectory <%= @data_dir %>
   CookieAuthentication 1
 <% end %>
 
-<% if @use_dns_port == true %>       
+<% if @use_dns == true %>       
   DNSPort <%= @dns_port %>
   AutomapHostsOnResolve 1
   AutomapHostsSuffixes .exit,.onion
