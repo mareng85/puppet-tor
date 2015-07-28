@@ -36,25 +36,28 @@ Example: For using as client:
 	class{'::tor::client':}
 
 Example: Same as above, but setting some custom values:
-        class{'::tor::client':
-	  socks_port           => ['127.0.0.1:9000',],
- 	  socks_policy         => undef,
-  	  deamon               => true,
-	}
 
+    class{'::tor::client':
+      socks_port           => ['127.0.0.1:9000',],
+      socks_policy         => undef,
+      deamon               => true,
+    }
 
 Example: For using as client with Tor DNS:
-	class{'::tor::client':
-  	  $ensure     	=> running,
-  	  $dns_port 	=> '5353',
-	}
+
+    class{'::tor::client':
+       $ensure     	=> running,
+       $dns_port 	=> '5353',
+    }
 
 
 Example: For using as relay:
-	class{'::tor::relay':}
+
+    class{'::tor::relay':}
 
 Example: For using as exit node:
-        class{'::tor::exit_node':}
+    
+    class{'::tor::exit_node':}
 
 ## Limitations
 
