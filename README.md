@@ -32,10 +32,11 @@ Set your browser proxy settings to listen on 127.0.0.1:9050 using SOCKS5.
 
 ## Usage
 
-Example: For using as client:
-	class{'::tor::client':}
+For using as client:
 
-Example: Same as above, but setting some custom values:
+    class{'::tor::client':}
+
+Same as above, but setting some custom values:
 
     class{'::tor::client':
       socks_port           => ['127.0.0.1:9000',],
@@ -43,11 +44,12 @@ Example: Same as above, but setting some custom values:
       deamon               => true,
     }
 
-Example: For using as client with Tor DNS:
+For using as client with Tor DNS and with Control Port:
 
     class{'::tor::client':
        $ensure     	=> running,
        $dns_port 	=> '5353',
+       $control_port    => '9051',
     }
 
 
