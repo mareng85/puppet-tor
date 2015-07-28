@@ -1,12 +1,12 @@
 {
   "name": "maxhope-tor",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "maxhope",
   "summary": "Set up tor client",
   "license": "Apache-2.0",
-  "source": "https://github.com/maxhope/maxhope-tor",
-  "project_page": "https://github.com/maxhope/maxhope-tor",
-  "issues_url": "https://github.com/maxhope/maxhope-tor/issues",
+  "source": "https://github.com/maxhope/puppet-tor",
+  "project_page": "https://github.com/maxhope/puppet-tor",
+  "issues_url": "https://github.com/maxhope/puppet-tor/issues",
   "operatingsystem_support": [
     {
     "operatingsystem":"CentOS",
