@@ -1,8 +1,8 @@
 {
   "name": "maxhope-tor",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "maxhope",
-  "summary": "Set up tor client",
+  "summary": "Installs and sets up Tor onion router",
   "license": "Apache-2.0",
   "source": "https://github.com/maxhope/puppet-tor",
   "project_page": "https://github.com/maxhope/puppet-tor",
